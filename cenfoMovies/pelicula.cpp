@@ -4,69 +4,94 @@ pelicula::pelicula()
 {
 }
 
-pelicula::pelicula(int, string, int, string, int)
+pelicula::pelicula(int _id, string _nombre, int _anio, string _director, int _cantSolicitudes, int _cantCategorias)
 {
+    this->id = _id;
+    this->nombre = _nombre;
+    this->anio = _anio;
+    this->director = _director;
+    this->cantSolicitudes = _cantSolicitudes;
+    this->cantCategorias = _cantCategorias;
+    this->sgte;
+    this->ant;
 }
 
 int pelicula::getId()
 {
-    return 0;
+    return this->id;
 }
 
 string pelicula::getNombre()
 {
-    return string();
+    return this->nombre;
 }
 
-int pelicula::getAnno()
+int pelicula::getAnio()
 {
-    return 0;
+    return this->anio;
 }
 
 string pelicula::getDirector()
 {
-    return string();
+    return this->director;
 }
 
 int pelicula::getCantSolicitudes()
 {
-    return 0;
+    return this->cantSolicitudes;
+}
+
+int pelicula::getCantCategorias()
+{
+    return this->cantCategorias;
 }
 
 pelicula* pelicula::getSgte()
 {
-    return nullptr;
+    return this->sgte;
 }
 
 pelicula* pelicula::getAnt()
 {
-    return nullptr;
+    return this->ant;
 }
 
-void pelicula::setId(int)
+void pelicula::setId(int _id)
 {
+    this->id = _id;
 }
 
-void pelicula::setNombre(string)
+void pelicula::setNombre(string _nombre)
 {
+    this->nombre = _nombre;
 }
 
-void pelicula::setAnno(int)
+void pelicula::setAnio(int _anio)
 {
+    this->anio = _anio;
 }
 
-void pelicula::setDirector(string)
+void pelicula::setDirector(string _director)
 {
+    this->director = _director;
 }
 
-void pelicula::setCantSolicitudes(int)
+void pelicula::setCantSolicitudes(int _cantSolicitudes)
 {
+    this->cantSolicitudes = _cantSolicitudes;
 }
 
-void pelicula::setSgte(pelicula*)
+void pelicula::setCantCategorias(int _cantCategorias)
 {
+    this->cantCategorias = _cantCategorias;
 }
 
-void pelicula::setAnt(pelicula*)
+void pelicula::setSgte(pelicula* _sgte)
 {
+    this->sgte = _sgte;
+}
+
+void pelicula::setAnt(pelicula* _ante)
+{
+    this->ant = _ante;
 }

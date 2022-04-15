@@ -8,20 +8,20 @@ class categoria
 {
 	private:
 		string nombre;
+		int cantPeliculasAsoc;
 
 		categoria* sgte;
-		categoria* ant;
 
 	public:
 		categoria(); // constructor de la clase
-		categoria(string); // constructor sobrecargado
+		categoria(string, int); // constructor sobrecargado
 
 		string getNombre();
+		int getCantPeliculasAsoc();
 		categoria* getSgte();
-		categoria* getAnt();
 
 		void setNombre(string);
+		void setCantPeliculasAsoc(int);
 		void setSgte(categoria*);
-		void setAnt(categoria*);
 };
 

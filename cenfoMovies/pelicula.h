@@ -9,30 +9,33 @@ class pelicula
 	private:
 		int id;
 		string nombre;
-		int anno;
+		int anio;
 		string director;
 		int cantSolicitudes;
+		int cantCategorias;
 
 		pelicula* sgte;
 		pelicula* ant;
 
 	public:
 		pelicula(); // constructor de la clase
-		pelicula(int, string, int, string, int); // constructor sobrecargado
+		pelicula(int, string, int, string, int, int); // constructor sobrecargado
 
 		int getId();
 		string getNombre();
-		int getAnno();
+		int getAnio();
 		string getDirector();
 		int getCantSolicitudes();
+		int getCantCategorias();
 		pelicula* getSgte();
 		pelicula* getAnt();
 
 		void setId(int);
 		void setNombre(string);
-		void setAnno(int);
+		void setAnio(int);
 		void setDirector(string);
 		void setCantSolicitudes(int);
+		void setCantCategorias(int);
 		void setSgte(pelicula*);
 		void setAnt(pelicula *);
 };

@@ -2,35 +2,46 @@
 
 categoria::categoria()
 {
+    this->nombre = "";
+    this->cantPeliculasAsoc = 0;
+    this->sgte = NULL;
 }
 
-categoria::categoria(string)
+categoria::categoria(string _nombre, int _asoc)
 {
+    this->nombre = _nombre;
+    this->cantPeliculasAsoc = _asoc;
+    this->sgte = NULL;
 }
 
 string categoria::getNombre()
 {
-    return string();
+    return this->nombre;
+}
+
+int categoria::getCantPeliculasAsoc()
+{
+    return this->cantPeliculasAsoc;
 }
 
 categoria* categoria::getSgte()
 {
-    return nullptr;
+    return this->sgte;
 }
 
-categoria* categoria::getAnt()
+
+void categoria::setNombre(string _nombre)
 {
-    return nullptr;
+    this->nombre = _nombre;
 }
 
-void categoria::setNombre(string)
+void categoria::setCantPeliculasAsoc(int _cant)
 {
+    this->cantPeliculasAsoc = _cant;
 }
 
-void categoria::setSgte(categoria*)
+void categoria::setSgte(categoria* _sgte)
 {
+    this->sgte = _sgte;
 }
 
-void categoria::setAnt(categoria*)
-{
-}
