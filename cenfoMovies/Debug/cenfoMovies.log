@@ -1,5 +1,5 @@
-﻿  categoria.cpp
-  cenfoMovies.cpp
-  pelicula.cpp
+﻿  cenfoMovies.cpp
+  listaPeliculas.cpp
+  logica.cpp
   Generating Code...
   cenfoMovies.vcxproj -> F:\UCENFOTEC\Estructuras de Datos 1\Proyecto Final\cenfoMovies\cenfoMovies\Debug\cenfoMovies.exe
