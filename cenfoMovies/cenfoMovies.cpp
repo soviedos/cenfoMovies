@@ -25,9 +25,9 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
         cout << "(5)  Listado catalogo completo en forma ascendente (descendente) por codigo " << endl;
         cout << "(6)  Listado catalogo completo en forma ascendente (descendente) por nombre " << endl;
         cout << "(7)  Listar peliculas cuyo nombre contenga una hilera especifica " << endl;
-        cout << "(8)  Listado de catalogo de peliculas de un rango de año especifico " << endl;
-        cout << "(9)  Listar peliculas cuya solicitud sean inferior a un limite dado " << endl;
-        cout << "(10) Eliminar de la lista las peliculas cuya solicitud sea inferior a un limite dado " << endl;
+        cout << "(8)  Listado de catalogo de peliculas de un rango de años especifico " << endl;
+        cout << "(9)  Listar peliculas cuya solicitud sean inferior a un limite dado de fecha de filmacion " << endl;
+        cout << "(10) Eliminar de la lista las peliculas cuya solicitud sea inferior a un limite dado de fecha de filmacion " << endl;
         cout << "(11) Listado de peliculas sin categoria asignada " << endl;
         cout << "(0) Terminar" << endl;
         cout << endl;
@@ -89,7 +89,17 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
             }
             case 4: {
                 cout << "Modificar la lista " << endl;
-
+                int id;
+                cout << "Ingrese el codigo de la pelicula a modificar: ";
+                cin >> id;
+                cout << endl;
+                bool modificada = LP->modificarPelicula(id);
+                if (modificada) {
+                    cout << "La pelicula " << id << " ha sido modificada exitosamente" << endl;
+                }
+                else {
+                    cout << "No se ha podido modificar la pelicula";
+                }
                 break;
             }
             case 5: {
@@ -104,27 +114,53 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
             }
             case 7: {
                 cout << "Listar peliculas cuyo nombre contenga una hilera especifica " << endl;
-
+                string nombre;
+                cout << "Ingrese la palabra o hilera que desea buscar: ";
+                cin >> nombre;
+                cout << endl;
+                LP->listarCatalogoPorHilera(nombre);
                 break;
             }
             case 8: {
-                cout << "Listado de catalogo de peliculas de un rango de año especifico " << endl;
-
+                cout << "Listado de catalogo de peliculas de un rango de años especifico " << endl;
+                int inferior;
+                cout << "Ingrese el año limite inferior: ";
+                cin >> inferior;
+                int superior;
+                cout << "Ingrese el año limite superior: ";
+                cin >> superior;
+                cout << endl;
+                LP->listarCatalogoPorRango(inferior, superior);
                 break;
             }
             case 9: {
-                cout << "Listar peliculas cuya solicitud sean inferior a un limite dado " << endl;
-
+                cout << "Listar peliculas cuya solicitud sean inferior a un limite dado según el año de filmación " << endl;
+                int anio;
+                cout << "Ingrese el año limite: ";
+                cin >> anio;
+                cout << endl;
+                LP->listarCatalogoPorLimite(anio);
                 break;
             }
             case 10: {
-                cout << "Eliminar de la lista las peliculas cuya solicitud sea inferior a un limite dado " << endl;
-
+                cout << "Eliminar de la lista las peliculas cuya solicitud sea inferior a un limite dado de fecha de filmacion " << endl;
+                int anio;
+                cout << "Ingrese el limite de año: ";
+                cin >> anio;
+                cout << endl;
+                bool modificada = LP->eliminarPeliculasPorLimite(anio);
+                if (modificada) {
+                    cout << "Las peliculas filmadas antes de: " << anio << " ha sido eliminadas exitosamente" << endl;
+                }
+                else {
+                    cout << "No se ha podido eliminar las peliculas";
+                }
                 break;
             }
             case 11: {
                 cout << "Listado de peliculas sin categoria asignada " << endl;
-
+                cout << endl;
+                LP->listarPeliculasSinCategoria();
                 break;
             }
             case 0: {

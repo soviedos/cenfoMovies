@@ -165,9 +165,86 @@ void listaPeliculas::consultarPelicula(int _id)
     }
 }
 
-bool listaPeliculas::modificarPelicula(int)
+bool listaPeliculas::modificarPelicula(int _id)
 {
-    return false;
+    bool modificada = false;
+    bool salir = false;
+    pelicula* aux = getCab();
+
+    while (aux != NULL && !modificada && !salir) {
+        if (aux->getId()) {
+            int id = aux->getId();
+            string nombre = aux->getNombre();;
+            int anio = aux->getAnio();
+            string director = aux->getDirector();
+            int cantSolicitudes = aux->getCantSolicitudes();
+            int cantCategorias = aux->getCantCategorias();
+            int opc = 0;
+
+            do {
+                cout << "(1)  Modificar id " << endl;
+                cout << "(2)  Modificar nombre de la pelicula " << endl;
+                cout << "(3)  Modificar año de filamacion " << endl;
+                cout << "(4)  Modificar nombre del director " << endl;
+                cout << "(0)  Finalizar " << endl;
+cout << endl;
+cout << "OPCION SELECCIONADA-> "; cin >> opc;
+cout << endl << endl;
+cout << "_____________________________________________________________________";
+cout << endl << endl;
+
+switch (opc) {
+case 1: {
+    cout << "Ingresar el nuevo id: ";
+    cin >> id;
+    retirarPelicula(aux->getId());
+    agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
+    modificada = true;
+    break;
+}
+
+case 2: {
+    cout << "Ingresar el nuevo nombre: ";
+    cin >> nombre;
+    aux->setNombre(nombre);
+    modificada = true;
+    break;
+}
+case 3: {
+    cout << "Ingresar el nuevo año de filmacion: ";
+    cin >> anio;
+    aux->setAnio(anio);
+    modificada = true;
+    break;
+}
+case 4: {
+    cout << "Ingresar el nuevo nombre del director: ";
+    cin >> director;
+    aux->setDirector(director);
+    modificada = true;
+    break;
+}
+case 0: {
+    cout << "Finalizando modificacion.... Adios.... " << endl;
+    salir = true;
+    break;
+}
+default:
+    cout << "Opcion digitada no es válida " << endl;
+    break;
+}
+
+cout << endl << endl;
+
+            } while (opc != 0);
+        }
+        else {
+        aux = aux->getSgte();
+        }
+    }
+
+
+    return modificada;
 }
 
 void listaPeliculas::listarCatalogoPorCodigo()
@@ -179,7 +256,7 @@ void listaPeliculas::listarCatalogoPorCodigo()
     }
     else {
         while (aux != NULL) {
-            cout << "Identificacion: " <<aux->getId() << endl;
+            cout << "Identificacion: " << aux->getId() << endl;
             cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
             cout << "Año de filmacion: " << aux->getAnio() << endl;
             cout << "Nombre del Director: " << aux->getDirector() << endl;
@@ -191,32 +268,142 @@ void listaPeliculas::listarCatalogoPorCodigo()
     }
 }
 
-listaPeliculas* listaPeliculas::listarCatalogoPorNombre()
+void listaPeliculas::listarCatalogoPorNombre()
 {
-    return nullptr;
+
 }
 
-listaPeliculas* listaPeliculas::listarCatalogoPorHilera(int)
+void listaPeliculas::listarCatalogoPorHilera(string _nombre)
 {
-    return nullptr;
+    pelicula* aux = getCab();
+
+    if (aux == NULL) {
+        cout << "Esta vacia la lista" << endl;;
+    }
+    else {
+        while (aux != NULL) {
+            if (aux->getNombre() == _nombre) {
+                cout << "Identificacion: " << aux->getId() << endl;
+                cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+                cout << endl;
+                aux = aux->getSgte();
+            }
+            else {
+                aux = aux->getSgte();
+            }
+        }
+        cout << "fin" << endl;
+    }
 }
 
-listaPeliculas* listaPeliculas::listarCatalogoPorRango(int)
+void listaPeliculas::listarCatalogoPorRango(int _inferior, int _superior)
 {
-    return nullptr;
+    pelicula* aux = getCab();
+
+    if (aux == NULL) {
+        cout << "Esta vacia la lista" << endl;;
+    }
+    else {
+        while (aux != NULL) {
+            if (_inferior <= aux->getAnio() && aux->getAnio() <= _superior) {
+                cout << "Identificacion: " << aux->getId() << endl;
+                cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+                cout << "Año de filmacion: " << aux->getAnio() << endl;
+                cout << "Nombre del Director: " << aux->getDirector() << endl;
+                cout << "Cantidad de veces que se ha solicitado: " << aux->getCantSolicitudes() << endl;
+                cout << endl;
+                aux = aux->getSgte();
+            }
+            else {
+                aux = aux->getSgte();
+            }
+        }
+        cout << "fin" << endl;
+    }
 }
 
-listaPeliculas* listaPeliculas::listarCatalogoPorLimite(int)
+void listaPeliculas::listarCatalogoPorLimite(int _anio)
 {
-    return nullptr;
+    pelicula* aux = getCab();
+
+    if (aux == NULL) {
+        cout << "Esta vacia la lista" << endl;;
+    }
+    else {
+        while (aux != NULL && aux->getAnio() < _anio) {
+            cout << "Identificacion: " << aux->getId() << endl;
+            cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+            cout << endl;
+            aux = aux->getSgte();
+        }
+        cout << "fin" << endl;
+    }
 }
 
-listaPeliculas* listaPeliculas::listarPeliculasSinCategoria()
+void listaPeliculas::listarPeliculasSinCategoria()
 {
-    return nullptr;
+    pelicula* aux = getCab();
+
+    if (aux == NULL) {
+        cout << "Esta vacia la lista" << endl;;
+    }
+    else {
+        while (aux != NULL && aux->getCantCategorias() == 0) {
+            cout << "Identificacion: " << aux->getId() << endl;
+            cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+            cout << endl;
+            aux = aux->getSgte();
+        }
+        cout << "fin" << endl;
+    }
 }
 
-bool listaPeliculas::eliminarPeliculasPorLimite(int)
+bool listaPeliculas::eliminarPeliculasPorLimite(int _limite)
 {
-    return false;
+    bool eliminada = false;
+    bool borrada = false;
+    pelicula* aux = getCab();
+    pelicula* sgte = NULL;
+
+    while (aux != NULL) {
+        borrada = false;
+        if (aux->getAnio() < _limite) {
+            if (aux == cab && largo == 1) {
+                setCab(NULL);
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                break;
+            }
+            if (aux == cab && largo > 1) {
+                aux->getSgte()->setAnte(NULL);
+                setCab(aux->getSgte());
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                aux = getCab();
+            }
+            if (aux->getSgte() != NULL && aux != cab && !borrada) {
+                sgte = aux->getSgte();
+                aux->getAnte()->setSgte(aux->getSgte());
+                aux->getSgte()->setAnte(aux->getAnte());
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                borrada = true;
+                aux = sgte;
+            }
+            if (aux->getSgte() == NULL && aux != cab && !borrada) {
+                aux->getAnte()->setSgte(NULL);
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                aux = NULL;
+            }
+        }
+        else {
+            aux = aux->getSgte();
+        }
+    }
+    return eliminada;
 }

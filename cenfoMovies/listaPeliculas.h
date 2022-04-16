@@ -28,11 +28,11 @@ class listaPeliculas
 		bool modificarPelicula(int);
 
 		void listarCatalogoPorCodigo();
-		listaPeliculas* listarCatalogoPorNombre();
-		listaPeliculas* listarCatalogoPorHilera(int);
-		listaPeliculas* listarCatalogoPorRango(int);
-		listaPeliculas* listarCatalogoPorLimite(int);
-		listaPeliculas* listarPeliculasSinCategoria();
+		void listarCatalogoPorNombre();
+		void listarCatalogoPorHilera(string);
+		void listarCatalogoPorRango(int, int);
+		void listarCatalogoPorLimite(int);
+		void listarPeliculasSinCategoria();
 
 		bool eliminarPeliculasPorLimite(int);
 };
