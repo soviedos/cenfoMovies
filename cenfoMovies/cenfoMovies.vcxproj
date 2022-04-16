@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asocPeliculaCategoria.cpp" />
     <ClCompile Include="categoria.cpp" />
     <ClCompile Include="cenfoMovies.cpp" />
     <ClCompile Include="listaCategorias.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="pelicula.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asocPeliculaCategoria.h" />
     <ClInclude Include="categoria.h" />
     <ClInclude Include="listaCategorias.h" />
     <ClInclude Include="listaPeliculas.h" />

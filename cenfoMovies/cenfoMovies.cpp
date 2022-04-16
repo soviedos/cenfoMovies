@@ -4,9 +4,11 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include <string>
 
 using namespace std;
 
+#include "pelicula.h"
 #include "listaPeliculas.h"
 #include "listaCategorias.h"
 #include "logica.h"
@@ -37,6 +39,27 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
         switch (opc) {
             case 1: {
                 cout << "Agregar a la lista " << endl;
+                int id;
+                cout << "Por favor ingresar el número identificador de la película: " << endl;
+                cin >> id;
+                string nombre;
+                cout << "Por favor ingresar el nombre de la película: " << endl;
+                cin.ignore() >> nombre;
+                int anio;
+                cout << "Por favor ingresar el año en que se filmó la película: " << endl;
+                cin >> anio;
+                string director;
+                cout << "Por favor ingresar el nombre del director de la película: " << endl;
+                cin.ignore() >> director;
+                int cantSolicitudes = 0;
+                int cantCategorias = 0;
+                bool agregado = LP->agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
+                if (agregado) {
+                    cout << "La pelicula ha sido ingresada con exito al catalogo";
+                }
+                else {
+                    cout << "La pelicula no se ha podido ingresar, por favor revisar los datos proporcionados";
+                }
                 break;
             }
 
@@ -56,8 +79,8 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 break;
             }
             case 5: {
-                cout << "Listado catalogo completo en forma ascendente (descendente) por codigo " << endl;
-
+                cout << "Listado catalogo completo en forma ascendente (descendente) por codigo " << endl << endl;
+                LP->listarCatalogoPorCodigo();
                 break;
             }
             case 6: {

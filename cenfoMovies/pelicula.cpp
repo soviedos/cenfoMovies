@@ -13,7 +13,7 @@ pelicula::pelicula(int _id, string _nombre, int _anio, string _director, int _ca
     this->cantSolicitudes = _cantSolicitudes;
     this->cantCategorias = _cantCategorias;
     this->sgte;
-    this->ant;
+    this->ante;
 }
 
 int pelicula::getId()
@@ -51,9 +51,9 @@ pelicula* pelicula::getSgte()
     return this->sgte;
 }
 
-pelicula* pelicula::getAnt()
+pelicula* pelicula::getAnte()
 {
-    return this->ant;
+    return this->ante;
 }
 
 void pelicula::setId(int _id)
@@ -91,7 +91,7 @@ void pelicula::setSgte(pelicula* _sgte)
     this->sgte = _sgte;
 }
 
-void pelicula::setAnt(pelicula* _ante)
+void pelicula::setAnte(pelicula* _ante)
 {
-    this->ant = _ante;
+    this->ante = _ante;
 }

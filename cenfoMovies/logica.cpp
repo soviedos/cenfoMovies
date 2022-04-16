@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+
 using namespace std;
 
 bool validarCredenciales(string _usuario, string _password, int _tipo) {

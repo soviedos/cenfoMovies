@@ -33,6 +33,9 @@
     <ClCompile Include="logica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="asocPeliculaCategoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pelicula.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="logica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asocPeliculaCategoria.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

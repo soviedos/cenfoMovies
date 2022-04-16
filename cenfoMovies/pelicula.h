@@ -15,7 +15,7 @@ class pelicula
 		int cantCategorias;
 
 		pelicula* sgte;
-		pelicula* ant;
+		pelicula* ante;
 
 	public:
 		pelicula(); // constructor de la clase
@@ -28,7 +28,7 @@ class pelicula
 		int getCantSolicitudes();
 		int getCantCategorias();
 		pelicula* getSgte();
-		pelicula* getAnt();
+		pelicula* getAnte();
 
 		void setId(int);
 		void setNombre(string);
@@ -37,5 +37,5 @@ class pelicula
 		void setCantSolicitudes(int);
 		void setCantCategorias(int);
 		void setSgte(pelicula*);
-		void setAnt(pelicula *);
+		void setAnte(pelicula *);
 };
