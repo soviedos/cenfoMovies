@@ -24,7 +24,7 @@ class listaPeliculas
 
 		bool agregarPelicula(int, string, int, string, int, int); // Las peliculas van ordenadas ascendentemente por id.
 		bool retirarPelicula(int); 
-		pelicula* consultarPelicula(int);
+		void consultarPelicula(int);
 		bool modificarPelicula(int);
 
 		void listarCatalogoPorCodigo();

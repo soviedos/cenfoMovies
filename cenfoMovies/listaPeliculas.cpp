@@ -33,7 +33,8 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
     bool agregado = false;
 
 	if (cab == NULL) {
-		setCab(new pelicula(_id, _nombre, _anio, _director, _cantSolicitudes, _cantCategorias));
+        pelicula* nuevo = new pelicula(_id, _nombre, _anio, _director, _cantSolicitudes, _cantCategorias);
+		setCab(nuevo);
 		setLargo(1);
 		agregado = true;
 	}
@@ -44,7 +45,7 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
             nuevo->setAnte(NULL);
             cab->setAnte(nuevo);
             setCab(nuevo);
-            largo++;
+            setLargo(getLargo() + 1);
             agregado = true;
         }
         else if (_id > getCab()->getId()) {
@@ -52,7 +53,7 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
             nuevo->setSgte(NULL);
             nuevo->setAnte(cab);
             cab->setSgte(nuevo);
-            largo++;
+            setLargo(getLargo() + 1);
             agregado = true;
         }
     }
@@ -66,7 +67,7 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
                 nuevo->setAnte(NULL);
                 cab->setAnte(nuevo);
                 setCab(nuevo);
-                largo++;
+                setLargo(getLargo() + 1);
                 agregado = true;
             }
             else if (_id > aux->getId() && _id < aux->getSgte()->getId()) {
@@ -74,32 +75,94 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
                 nuevo->setSgte(aux->getSgte());
                 nuevo->setAnte(aux);
                 aux->setSgte(nuevo);
-                largo++;
+                setLargo(getLargo() + 1);
                 agregado = true;
             }
             else {
                 aux = aux->getSgte();
             }
         }
-        if (aux->getSgte() == NULL) {
+        if (aux->getSgte() == NULL && _id > aux->getId()) {
             pelicula* nuevo = new pelicula(_id, _nombre, _anio, _director, _cantSolicitudes, _cantCategorias);
             aux->setSgte(nuevo);
             nuevo->setAnte(aux);
             nuevo->setSgte(NULL);
+            setLargo(getLargo() + 1);
             agregado = true;
         }
     }
     return agregado;
 }
 
-bool listaPeliculas::retirarPelicula(int)
+bool listaPeliculas::retirarPelicula(int _id)
 {
-    return false;
+    bool eliminada = false;
+    pelicula* aux = getCab();
+    pelicula* sgte = NULL;
+
+    while (aux != NULL || !eliminada) {
+        if (aux->getId() == _id) {
+            if (aux == cab && largo == 1) {
+                setCab(NULL);
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                break;
+            }
+            if (aux == cab && largo > 1) {
+                aux->getSgte()->setAnte(NULL);
+                setCab(aux->getSgte());
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                break;
+            }
+            if (aux->getSgte() != NULL) {
+                aux->getAnte()->setSgte(aux->getSgte());
+                aux->getSgte()->setAnte(aux->getAnte());
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                break;
+            }
+            if (aux->getSgte() == NULL) {
+                aux->getAnte()->setSgte(NULL);
+                delete aux;
+                setLargo(getLargo() - 1);
+                eliminada = true;
+                break;
+            }
+        }
+        else {
+            aux = aux->getSgte();
+        }
+    }
+    return eliminada;
 }
 
-pelicula* listaPeliculas::consultarPelicula(int)
+void listaPeliculas::consultarPelicula(int _id)
 {
-    return nullptr;
+    pelicula* aux = getCab();
+    bool encontrada = false;
+
+    while (aux != NULL) {
+        if (aux->getId() == _id) {
+            cout << "Identificacion: " << aux->getId() << endl;
+            cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+            cout << "Año de filmacion: " << aux->getAnio() << endl;
+            cout << "Nombre del Director: " << aux->getDirector() << endl;
+            cout << "Cantidad de veces que se ha solicitado: " << aux->getCantSolicitudes() << endl;
+            cout << endl;
+            encontrada = true;
+            break;
+        }
+        else {
+            aux = aux->getSgte();
+        }
+    }
+    if (!encontrada) {
+        cout << "No se pudo encontrar la pelicula en el catalogo" << endl;
+    }
 }
 
 bool listaPeliculas::modificarPelicula(int)
@@ -115,7 +178,6 @@ void listaPeliculas::listarCatalogoPorCodigo()
         cout << "Esta vacia la lista" << endl;;
     }
     else {
-
         while (aux != NULL) {
             cout << "Identificacion: " <<aux->getId() << endl;
             cout << "Nombre de la pelicula: " << aux->getNombre() << endl;

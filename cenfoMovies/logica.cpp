@@ -10,7 +10,7 @@ using namespace std;
 
 bool validarCredenciales(string _usuario, string _password, int _tipo) {
 	bool valido = false;
-    string userAdmin = "Sergio";
+    string userAdmin = "sergio";
     string passAdmin = "1234";
     string userCliente = "Sergio";
     string passCliente = "123";

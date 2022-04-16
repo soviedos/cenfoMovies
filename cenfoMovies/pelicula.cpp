@@ -2,6 +2,14 @@
 
 pelicula::pelicula()
 {
+    this->id = 0;
+    this->nombre = "";
+    this->anio = 0;
+    this->director = "";
+    this->cantSolicitudes = 0;
+    this->cantCategorias = 0;
+    this->sgte = NULL;
+    this->ante = NULL;
 }
 
 pelicula::pelicula(int _id, string _nombre, int _anio, string _director, int _cantSolicitudes, int _cantCategorias)
@@ -12,8 +20,8 @@ pelicula::pelicula(int _id, string _nombre, int _anio, string _director, int _ca
     this->director = _director;
     this->cantSolicitudes = _cantSolicitudes;
     this->cantCategorias = _cantCategorias;
-    this->sgte;
-    this->ante;
+    this->sgte = NULL;
+    this->ante = NULL;
 }
 
 int pelicula::getId()

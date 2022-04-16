@@ -64,13 +64,27 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
             }
 
             case 2: {
-                cout << "Retirar de la lista " << endl;
+                cout << "Retirar de la lista " << endl << endl;
+                int id;
+                cout << "Ingrese el codigo de la pelicula a eliminar: ";
+                cin >> id;
+                bool eliminada = LP->retirarPelicula(id);
+                if (eliminada) {
+                    cout << "La pelicula " << id << " ha sido eliminada del catalogo" << endl;
+                }
+                else {
+                    cout << "No se ha podido eliminar la pelicula";
+                }
 
                 break;
             }
             case 3: {
                 cout << "Consultar la lista " << endl;
-
+                int id;
+                cout << "Ingrese el codigo de la pelicula a consultar: ";
+                cin >> id;
+                cout << endl;
+                LP->consultarPelicula(id);
                 break;
             }
             case 4: {
@@ -79,12 +93,12 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 break;
             }
             case 5: {
-                cout << "Listado catalogo completo en forma ascendente (descendente) por codigo " << endl << endl;
+                cout << "Listado catalogo completo en forma ascendente por codigo " << endl << endl;
                 LP->listarCatalogoPorCodigo();
                 break;
             }
             case 6: {
-                cout << "Listado catalogo completo en forma ascendente (descendente) por nombre " << endl;
+                cout << "Listado catalogo completo en forma ascendente por nombre " << endl;
 
                 break;
             }
