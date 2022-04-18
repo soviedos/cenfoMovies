@@ -1,3 +1,5 @@
+#include <iostream>
+#include <stdlib.h>
 #include "listaPeliculas.h"
 
 listaPeliculas::listaPeliculas()
@@ -100,7 +102,7 @@ bool listaPeliculas::retirarPelicula(int _id)
     pelicula* aux = getCab();
     pelicula* sgte = NULL;
 
-    while (aux != NULL || !eliminada) {
+    while (aux != NULL) {
         if (aux->getId() == _id) {
             if (aux == cab && largo == 1) {
                 setCab(NULL);
@@ -172,7 +174,7 @@ bool listaPeliculas::modificarPelicula(int _id)
     pelicula* aux = getCab();
 
     while (aux != NULL && !modificada && !salir) {
-        if (aux->getId()) {
+        if (aux->getId() == _id) {
             int id = aux->getId();
             string nombre = aux->getNombre();;
             int anio = aux->getAnio();
@@ -187,63 +189,61 @@ bool listaPeliculas::modificarPelicula(int _id)
                 cout << "(3)  Modificar año de filamacion " << endl;
                 cout << "(4)  Modificar nombre del director " << endl;
                 cout << "(0)  Finalizar " << endl;
-cout << endl;
-cout << "OPCION SELECCIONADA-> "; cin >> opc;
-cout << endl << endl;
-cout << "_____________________________________________________________________";
-cout << endl << endl;
+                cout << endl;
+                cout << "OPCION SELECCIONADA-> "; cin >> opc;
+                cout << endl << endl;
+                cout << "_____________________________________________________________________";
+                cout << endl << endl;
 
-switch (opc) {
-case 1: {
-    cout << "Ingresar el nuevo id: ";
-    cin >> id;
-    retirarPelicula(aux->getId());
-    agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
-    modificada = true;
-    break;
-}
+                switch (opc) {
+                case 1: {
+                    cout << "Ingresar el nuevo id: ";
+                    cin >> id;
+                    retirarPelicula(aux->getId());
+                    agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
+                    modificada = true;
+                    break;
+                }
 
-case 2: {
-    cout << "Ingresar el nuevo nombre: ";
-    cin >> nombre;
-    aux->setNombre(nombre);
-    modificada = true;
-    break;
-}
-case 3: {
-    cout << "Ingresar el nuevo año de filmacion: ";
-    cin >> anio;
-    aux->setAnio(anio);
-    modificada = true;
-    break;
-}
-case 4: {
-    cout << "Ingresar el nuevo nombre del director: ";
-    cin >> director;
-    aux->setDirector(director);
-    modificada = true;
-    break;
-}
-case 0: {
-    cout << "Finalizando modificacion.... Adios.... " << endl;
-    salir = true;
-    break;
-}
-default:
-    cout << "Opcion digitada no es válida " << endl;
-    break;
-}
+                case 2: {
+                    cout << "Ingresar el nuevo nombre: ";
+                    cin >> nombre;
+                    aux->setNombre(nombre);
+                    modificada = true;
+                    break;
+                }
+                case 3: {
+                    cout << "Ingresar el nuevo año de filmacion: ";
+                    cin >> anio;
+                    aux->setAnio(anio);
+                    modificada = true;
+                    break;
+                }
+                case 4: {
+                    cout << "Ingresar el nuevo nombre del director: ";
+                    cin >> director;
+                    aux->setDirector(director);
+                    modificada = true;
+                    break;
+                }
+                case 0: {
+                    cout << "Finalizando modificacion.... Adios.... " << endl;
+                    salir = true;
+                    break;
+                }
+                default:
+                    cout << "Opcion digitada no es válida " << endl;
+                    break;
+                }
 
-cout << endl << endl;
+                cout << endl << endl;
 
             } while (opc != 0);
         }
         else {
-        aux = aux->getSgte();
+            aux = aux->getSgte();
         }
     }
-
-
     return modificada;
 }
 

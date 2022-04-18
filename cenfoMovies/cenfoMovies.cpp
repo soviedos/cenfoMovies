@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string>
+#include <ios>
 
 using namespace std;
 
@@ -44,13 +45,13 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 cin >> id;
                 string nombre;
                 cout << "Por favor ingresar el nombre de la película: " << endl;
-                cin.ignore() >> nombre;
+                cin >> nombre;
                 int anio;
                 cout << "Por favor ingresar el año en que se filmó la película: " << endl;
                 cin >> anio;
                 string director;
                 cout << "Por favor ingresar el nombre del director de la película: " << endl;
-                cin.ignore() >> director;
+                cin >> director;
                 int cantSolicitudes = 0;
                 int cantCategorias = 0;
                 bool agregado = LP->agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
@@ -75,7 +76,6 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 else {
                     cout << "No se ha podido eliminar la pelicula";
                 }
-
                 break;
             }
             case 3: {
@@ -202,27 +202,63 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         switch (opc) {
         case 1: {
             cout << "Agregar a la categoria " << endl;
+            string nombre;
+            cout << "Por favor ingresar el nombre de la categoria: " << endl;
+            cin >> nombre;
+            int cantPeliculas = 0;
+            int cantCategorias = 0;
+            bool agregado = LC->agregarCategoria(nombre, cantPeliculas);
+            if (agregado) {
+                cout << "La categoria ha sido ingresada con exito al catalogo";
+            }
+            else {
+                cout << "La categoria no se ha podido ingresar, por favor revisar los datos proporcionados";
+            }
             break;
         }
 
         case 2: {
             cout << "Cerrar una categoria " << endl;
-
+            string nombre;
+            cout << "Ingrese el nombre de la categoria a eliminar: ";
+            cin >> nombre;
+            bool eliminada = LC->cerrar(nombre);
+            if (eliminada) {
+                cout << "La categoria " << nombre << " ha sido eliminada del catalogo" << endl;
+            }
+            else {
+                cout << "No se ha podido eliminar la categoria";
+            }
             break;
         }
         case 3: {
             cout << "Modificar la categoria " << endl;
-
+            string nombre;
+            cout << "Ingrese el nombre de la categoria a modificar: ";
+            cin >> nombre;
+            cout << endl;
+            bool modificada = LC->modificarCategoria(nombre);
+            if (modificada) {
+                cout << "La categoria " << nombre << " ha sido modificada exitosamente" << endl;
+            }
+            else {
+                cout << "No se ha podido modificar la pelicula";
+            }
             break;
         }
         case 4: {
             cout << "Consultar las categorias " << endl;
-
+            string nombre;
+            cout << "Ingrese el codigo de la categoria a consultar: ";
+            cin >> nombre;
+            cout << endl;
+            LC->consultarCategoria(nombre);
             break;
         }
         case 5: {
             cout << "Catalogo de categorias (nombre y cantidad de peliculas asociadas) " << endl;
-
+            cout << "Listado catalogo completo en forma ascendente por nombre " << endl << endl;
+            LC->catalogoCategorias();
             break;
         }
         case 6: {

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include <regex>
 
 using namespace std;
 
@@ -77,4 +78,27 @@ string passwordDelUsuario(char sp = '*')
         passwd.push_back(ch_ipt);
         cout << sp;
     }
+}
+
+bool validarInteger(int _input)
+{
+    bool validado = false;
+    regex integer_expr("[0-9]+");
+    string input = to_string(_input);
+
+    if (regex_match(input, integer_expr)) {
+        validado = true;
+    }
+    return validado;
+}
+
+bool validarString(string _input)
+{
+    bool validado = false;
+    regex string_expr("[a-zA-Z0-9]+");
+
+    if (regex_match(_input, string_expr)) {
+        validado = true;
+    }
+    return validado;
 }
