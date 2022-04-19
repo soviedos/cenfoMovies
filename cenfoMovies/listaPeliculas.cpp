@@ -184,10 +184,9 @@ bool listaPeliculas::modificarPelicula(int _id)
             int opc = 0;
 
             do {
-                cout << "(1)  Modificar id " << endl;
-                cout << "(2)  Modificar nombre de la pelicula " << endl;
-                cout << "(3)  Modificar año de filamacion " << endl;
-                cout << "(4)  Modificar nombre del director " << endl;
+                cout << "(1)  Modificar nombre de la pelicula " << endl;
+                cout << "(2)  Modificar año de filamacion " << endl;
+                cout << "(3)  Modificar nombre del director " << endl;
                 cout << "(0)  Finalizar " << endl;
                 cout << endl;
                 cout << "OPCION SELECCIONADA-> "; cin >> opc;
@@ -197,29 +196,20 @@ bool listaPeliculas::modificarPelicula(int _id)
 
                 switch (opc) {
                 case 1: {
-                    cout << "Ingresar el nuevo id: ";
-                    cin >> id;
-                    retirarPelicula(aux->getId());
-                    agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
-                    modificada = true;
-                    break;
-                }
-
-                case 2: {
                     cout << "Ingresar el nuevo nombre: ";
                     cin >> nombre;
                     aux->setNombre(nombre);
                     modificada = true;
                     break;
                 }
-                case 3: {
+                case 2: {
                     cout << "Ingresar el nuevo año de filmacion: ";
                     cin >> anio;
                     aux->setAnio(anio);
                     modificada = true;
                     break;
                 }
-                case 4: {
+                case 3: {
                     cout << "Ingresar el nuevo nombre del director: ";
                     cin >> director;
                     aux->setDirector(director);

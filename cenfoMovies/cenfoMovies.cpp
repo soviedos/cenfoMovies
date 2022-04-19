@@ -234,6 +234,8 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         case 3: {
             cout << "Modificar la categoria " << endl;
             string nombre;
+            cout << "No se pueden modifocar las categorias: ";
+            /*
             cout << "Ingrese el nombre de la categoria a modificar: ";
             cin >> nombre;
             cout << endl;
@@ -244,6 +246,7 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
             else {
                 cout << "No se ha podido modificar la pelicula";
             }
+            */
             break;
         }
         case 4: {
