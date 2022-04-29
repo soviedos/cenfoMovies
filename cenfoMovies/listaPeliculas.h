@@ -35,5 +35,9 @@ class listaPeliculas
 		void listarPeliculasSinCategoria();
 
 		bool eliminarPeliculasPorLimite(int);
+
+		// **********Operaciones miscelaneas**********
+
+		bool elegirPelicula(int);
 };
 

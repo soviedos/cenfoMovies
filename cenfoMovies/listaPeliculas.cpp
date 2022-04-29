@@ -260,7 +260,52 @@ void listaPeliculas::listarCatalogoPorCodigo()
 
 void listaPeliculas::listarCatalogoPorNombre()
 {
+    pelicula* aux = getCab();
+    pelicula* sgte;
+    int largo = getLargo();
+    /*
+    while (aux != NULL) {
 
+        if (getLargo() == 2) {
+            sgte = aux->getSgte();
+            if (aux->getNombre().compare(sgte->getNombre()) > 0) {
+                aux->setSgte(sgte->getSgte());
+                aux->setAnte(sgte);
+                sgte->setAnte(NULL);
+                sgte->setSgte(aux);
+                setCab(sgte);
+                aux = aux->getSgte();
+                break;
+            }
+            else if (getLargo() > 2) {
+                if (aux->getNombre().compare(sgte->getNombre()) > 0) {
+                    aux->setSgte(sgte->getSgte());
+                    sgte->setAnte(aux->getAnte());
+                    aux->setAnte(sgte);
+                    sgte->setSgte(aux);
+                    aux = aux->getSgte();
+                    break;
+                }
+            }
+        }
+    }
+
+    if (aux == NULL) {
+        cout << "Esta vacia la lista" << endl;;
+    }
+    else {
+        while (aux != NULL) {
+            cout << "Identificacion: " << aux->getId() << endl;
+            cout << "Nombre de la pelicula: " << aux->getNombre() << endl;
+            cout << "Año de filmacion: " << aux->getAnio() << endl;
+            cout << "Nombre del Director: " << aux->getDirector() << endl;
+            cout << "Cantidad de veces que se ha solicitado: " << aux->getCantSolicitudes() << endl;
+            cout << endl;
+            aux = aux->getSgte();
+        }
+        cout << "fin" << endl;
+    }
+    */
 }
 
 void listaPeliculas::listarCatalogoPorHilera(string _nombre)
@@ -396,4 +441,24 @@ bool listaPeliculas::eliminarPeliculasPorLimite(int _limite)
         }
     }
     return eliminada;
+}
+
+bool listaPeliculas::elegirPelicula(int _id)
+{
+    bool elegida = false;
+
+    pelicula* aux = getCab();
+    bool encontrada = false;
+
+    while (aux != NULL) {
+        if (aux->getId() == _id) {
+            aux->setCantSolicitudes(aux->getCantSolicitudes() + 1);
+            elegida = true;
+            break;
+        }
+        else {
+            aux = aux->getSgte();
+        }
+    }
+    return elegida;
 }

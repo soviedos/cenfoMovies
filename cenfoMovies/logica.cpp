@@ -13,7 +13,7 @@ bool validarCredenciales(string _usuario, string _password, int _tipo) {
 	bool valido = false;
     string userAdmin = "sergio";
     string passAdmin = "1234";
-    string userCliente = "Sergio";
+    string userCliente = "sergio";
     string passCliente = "123";
 
     if (_tipo == 1) {
@@ -21,7 +21,7 @@ bool validarCredenciales(string _usuario, string _password, int _tipo) {
             valido = true;
         }
     }
-    else {
+    else if (_tipo == 2) {
         if (_usuario == userCliente && _password == passCliente) {
             valido = true;
         }

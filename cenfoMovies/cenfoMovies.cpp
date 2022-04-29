@@ -109,7 +109,7 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
             }
             case 6: {
                 cout << "Listado catalogo completo en forma ascendente por nombre " << endl;
-
+                LP->listarCatalogoPorNombre();
                 break;
             }
             case 7: {
@@ -361,7 +361,7 @@ void menuAdministrador() {
     }
 }
 
-void menuCliente() {
+void menuCliente(listaPeliculas*& LP, listaCategorias*& LC) {
     string usuario;
     string password;
     int tipo = 2;
@@ -378,8 +378,19 @@ void menuCliente() {
         do {
             cout << "OPERACIONES DE CONSULTA " << endl;
             cout << endl;
-            cout << "(1)  Consulta de peliculas " << endl;
-            cout << "(2)  Consulta de categorias " << endl;
+            cout << "(1)   Elegir pelicula " << endl;
+            cout << "(2)   Consultar pelicula " << endl;
+            cout << "(3)   Listar catalogo de peliculas por codigo " << endl;
+            cout << "(4)   Listar catalogo de peliculas por nombre " << endl;
+            cout << "(5)   Listar catalogo de peliculas por hilera " << endl;
+            cout << "(6)   Listar peliculas por rango de año " << endl;
+            cout << "(7)   Listar peliculas por limite de año " << endl;
+            cout << "(8)   Listar peliculas sin categoria " << endl;
+            cout << "(9)   Consultar categoria " << endl;
+            cout << "(10)  Listar catalogo de categorias " << endl;
+            cout << "(11)  Consultar peliculas por categoria " << endl;
+            cout << "(12)  Consultar catalogo de categorias con codigo y nombre de peliculas " << endl;
+            cout << "(13)  Consultar catalogo de categorias con todos los detalles de peliculas " << endl;
             cout << "(0)  Terminar" << endl;
             cout << endl;
             cout << "OPCION SELECCIONADA-> "; cin >> opc;
@@ -389,12 +400,101 @@ void menuCliente() {
 
             switch (opc) {
             case 1: {
-                cout << "Consulta de peliculas " << endl;
+                cout << "Elegir pelicula " << endl;
+                int idPelicula;
+                bool elegida;
+                cout << "Ingrese el codigo de la pelicula a elegir: ";
+                cin >> idPelicula;
+                cout << endl;
+                elegida = LP->elegirPelicula(idPelicula);
+                if (elegida) {
+                    cout << "La pelicula " << idPelicula << " ha sido seleccionada exitosamente" << endl;
+                }
+                else {
+                    cout << "No se ha podido seleccionar la pelicula";
+                }
                 break;
             }
-
             case 2: {
-                cout << "Consulta de categorias " << endl;
+                cout << "Consultar pelicula " << endl;
+                int id;
+                cout << "Ingrese el codigo de la pelicula a consultar: ";
+                cin >> id;
+                cout << endl;
+                LP->consultarPelicula(id);
+                break;
+            }
+            case 3: {
+                cout << "Listar catalogo de peliculas por codigo " << endl;
+                LP->listarCatalogoPorCodigo();
+                break;
+            }
+            case 4: {
+                cout << "Listar catalogo de peliculas por nombre " << endl;
+                LP->listarCatalogoPorNombre();
+                break;
+            }
+            case 5: {
+                cout << "Listar catalogo de peliculas por hilera " << endl;
+                string nombre;
+                cout << "Ingrese la palabra o hilera que desea buscar: ";
+                cin >> nombre;
+                cout << endl;
+                LP->listarCatalogoPorHilera(nombre);
+                break;
+            }
+            case 6: {
+                cout << "Listar peliculas por rango de año " << endl;
+                int inferior;
+                cout << "Ingrese el año limite inferior: ";
+                cin >> inferior;
+                int superior;
+                cout << "Ingrese el año limite superior: ";
+                cin >> superior;
+                cout << endl;
+                LP->listarCatalogoPorRango(inferior, superior);
+                break;
+            }
+            case 7: {
+                cout << "Listar peliculas por limite de año " << endl;
+                int anio;
+                cout << "Ingrese el año limite: ";
+                cin >> anio;
+                cout << endl;
+                LP->listarCatalogoPorLimite(anio);
+                break;
+            }
+            case 8: {
+                cout << "Listar peliculas sin categoria " << endl;
+                cout << endl;
+                LP->listarPeliculasSinCategoria();
+                break;
+            }
+            case 9: {
+                cout << "Consultar categoria " << endl;
+                string nombre;
+                cout << "Ingrese el codigo de la categoria a consultar: ";
+                cin >> nombre;
+                cout << endl;
+                LC->consultarCategoria(nombre);
+                break;
+            }
+            case 10: {
+                cout << "Listar catalogo de categorias " << endl;
+                cout << "Listado catalogo completo en forma ascendente por nombre " << endl << endl;
+                LC->catalogoCategorias();
+                break;
+            }
+            case 11: {
+                cout << "Consultar peliculas por categoria " << endl;
+                break;
+            }
+            case 12: {
+                cout << "Consultar catalogo de categorias con codigo y nombre de peliculas " << endl;
+                break;
+            }
+            case 13: {
+                cout << "Consultar catalogo de categorias con todos los detalles de peliculas " << endl;
                 break;
             }
             case 0: {
@@ -440,7 +540,9 @@ void menuPrincipal() {
                 break;
             }
             case 2: {
-                menuCliente();
+                listaPeliculas* LP = new listaPeliculas();
+                listaCategorias* LC = new listaCategorias();
+                menuCliente(LP, LC);
                 break;
             }
             case 0: {
