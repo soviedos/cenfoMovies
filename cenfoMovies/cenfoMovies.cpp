@@ -12,7 +12,12 @@ using namespace std;
 #include "pelicula.h"
 #include "listaPeliculas.h"
 #include "listaCategorias.h"
+#include "listaPorNombre.h"
 #include "logica.h"
+
+listaPeliculas* LP = new listaPeliculas();
+listaCategorias* LC = new listaCategorias();
+//listaPorNombre* LN = new listaPorNombre();
 
 void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
     int opc = 0;
@@ -55,6 +60,7 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 int cantSolicitudes = 0;
                 int cantCategorias = 0;
                 bool agregado = LP->agregarPelicula(id, nombre, anio, director, cantSolicitudes, cantCategorias);
+
                 if (agregado) {
                     cout << "La pelicula ha sido ingresada con exito al catalogo";
                 }
@@ -234,19 +240,7 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         case 3: {
             cout << "Modificar la categoria " << endl;
             string nombre;
-            cout << "No se pueden modifocar las categorias: ";
-            /*
-            cout << "Ingrese el nombre de la categoria a modificar: ";
-            cin >> nombre;
-            cout << endl;
-            bool modificada = LC->modificarCategoria(nombre);
-            if (modificada) {
-                cout << "La categoria " << nombre << " ha sido modificada exitosamente" << endl;
-            }
-            else {
-                cout << "No se ha podido modificar la pelicula";
-            }
-            */
+            cout << "No se pueden modificar las categorias: ";
             break;
         }
         case 4: {
@@ -331,15 +325,11 @@ void menuAdministrador() {
 
             switch (opc) {
             case 1: {
-                listaPeliculas* LP = new listaPeliculas();
-                listaCategorias* LC = new listaCategorias();
                 menuMantenimientoPeliculas(LP, LC);
                 break;
             }
 
             case 2: {
-                listaPeliculas* LP = new listaPeliculas();
-                listaCategorias* LC = new listaCategorias();
                 menuMantenimientoCategorias(LP, LC);
                 break;
             }
@@ -391,7 +381,7 @@ void menuCliente(listaPeliculas*& LP, listaCategorias*& LC) {
             cout << "(11)  Consultar peliculas por categoria " << endl;
             cout << "(12)  Consultar catalogo de categorias con codigo y nombre de peliculas " << endl;
             cout << "(13)  Consultar catalogo de categorias con todos los detalles de peliculas " << endl;
-            cout << "(0)  Terminar" << endl;
+            cout << "(0)   Terminar" << endl;
             cout << endl;
             cout << "OPCION SELECCIONADA-> "; cin >> opc;
             cout << endl << endl;
@@ -540,8 +530,6 @@ void menuPrincipal() {
                 break;
             }
             case 2: {
-                listaPeliculas* LP = new listaPeliculas();
-                listaCategorias* LC = new listaCategorias();
                 menuCliente(LP, LC);
                 break;
             }

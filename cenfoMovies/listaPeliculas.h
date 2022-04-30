@@ -39,5 +39,6 @@ class listaPeliculas
 		// **********Operaciones miscelaneas**********
 
 		bool elegirPelicula(int);
+		void ordenarPorNombre(pelicula*&);
 };
 

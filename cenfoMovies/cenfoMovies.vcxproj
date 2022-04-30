@@ -144,7 +144,9 @@
     <ClCompile Include="cenfoMovies.cpp" />
     <ClCompile Include="listaCategorias.cpp" />
     <ClCompile Include="listaPeliculas.cpp" />
+    <ClCompile Include="listaPorNombre.cpp" />
     <ClCompile Include="logica.cpp" />
+    <ClCompile Include="nombre.cpp" />
     <ClCompile Include="pelicula.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +154,9 @@
     <ClInclude Include="categoria.h" />
     <ClInclude Include="listaCategorias.h" />
     <ClInclude Include="listaPeliculas.h" />
+    <ClInclude Include="listaPorNombre.h" />
     <ClInclude Include="logica.h" />
+    <ClInclude Include="nombre.h" />
     <ClInclude Include="pelicula.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
