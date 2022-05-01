@@ -42,6 +42,12 @@
     <ClCompile Include="nombre.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="asociacion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listaAsociacion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pelicula.h">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="nombre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asociacion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="listaAsociacion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
