@@ -39,7 +39,6 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
     bool agregado = false;
     pelicula* nuevo = new pelicula(_id, _nombre, _anio, _director, _cantSolicitudes, _cantCategorias);
     pelicula* copia = nuevo;
-    LPN->agregarPeliculaPorNombre(copia);
 
 	if (cab == NULL) {
 		setCab(nuevo);
@@ -78,6 +77,7 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
             else if (_id > aux->getId() && _id < aux->getSgte()->getId()) {
                 nuevo->setSgte(aux->getSgte());
                 nuevo->setAnte(aux);
+                aux->getSgte()->setAnte(nuevo);
                 aux->setSgte(nuevo);
                 setLargo(getLargo() + 1);
                 agregado = true;
@@ -94,6 +94,7 @@ bool listaPeliculas::agregarPelicula(int _id, string _nombre, int _anio, string 
             agregado = true;
         }
     }
+    if (agregado) LPN->agregarPeliculaPorNombre(copia, copia->getId(), copia->getNombre());
     return agregado;
 }
 
@@ -101,9 +102,9 @@ bool listaPeliculas::retirarPelicula(int _id)
 {
     bool eliminada = false;
     pelicula* aux = getCab();
-    pelicula* sgte = NULL;
-    LPN->retirarPelicula(_id);
 
+    LPN->retirarPelicula(_id);
+   
     while (aux != NULL) {
         if (aux->getId() == _id) {
             if (aux == cab && largo == 1) {
@@ -201,6 +202,7 @@ bool listaPeliculas::modificarPelicula(int _id)
                     cout << "Ingresar el nuevo nombre: ";
                     cin >> nombre;
                     aux->setNombre(nombre);
+                    LPN->modificarPelicula(aux, id, nombre);
                     modificada = true;
                     break;
                 }
@@ -242,6 +244,8 @@ bool listaPeliculas::modificarPelicula(int _id)
 void listaPeliculas::listarCatalogoPorCodigo()
 {
     pelicula* aux = getCab();
+    cout << "Largo de la lista: " << largo << endl;
+    cout << endl;
 
     if (aux == NULL) {
         cout << "Esta vacia la lista" << endl;;
@@ -356,11 +360,14 @@ bool listaPeliculas::eliminarPeliculasPorLimite(int _limite)
     bool borrada = false;
     pelicula* aux = getCab();
     pelicula* sgte = NULL;
+    bool eliminadaNombre = false;
 
     while (aux != NULL) {
         borrada = false;
         if (aux->getAnio() < _limite) {
+
             LPN->retirarPelicula(aux->getId());
+
             if (aux == cab && largo == 1) {
                 setCab(NULL);
                 delete aux;

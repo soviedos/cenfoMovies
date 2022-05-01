@@ -22,9 +22,9 @@ class listaPorNombre
 
 		// **********Operaciones**********
 
-		void agregarPeliculaPorNombre(pelicula*);
+		void agregarPeliculaPorNombre(pelicula*, int, string);
 		void listarCatalogoPorNombre();
 		void retirarPelicula(int);
-		void eliminarPorLimite(int);
+		void modificarPelicula(pelicula*, int, string);
 };
 

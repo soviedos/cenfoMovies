@@ -114,7 +114,7 @@ void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
                 break;
             }
             case 6: {
-                cout << "Listado catalogo completo en forma ascendente por nombre " << endl;
+                cout << "Listado catalogo completo en forma ascendente por nombre " << endl << endl;
                 LP->listarCatalogoPorNombre();
                 break;
             }
