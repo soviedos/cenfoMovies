@@ -17,7 +17,6 @@ using namespace std;
 
 listaPeliculas* LP = new listaPeliculas();
 listaCategorias* LC = new listaCategorias();
-//listaPorNombre* LN = new listaPorNombre();
 
 void menuMantenimientoPeliculas(listaPeliculas*& LP, listaCategorias*& LC) {
     int opc = 0;
@@ -191,7 +190,7 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         cout << "(1)  Agregar a la categoria " << endl;
         cout << "(2)  Cerrar una categoria " << endl;
         cout << "(3)  Modificar la categoria " << endl;
-        cout << "(4)  Consultar las categorias " << endl;
+        cout << "(4)  Consultar una categoria " << endl;
         cout << "(5)  Catalogo de categorias (nombre y cantidad de peliculas asociadas) " << endl;
         cout << "(6)  Agregar pelicula a una categoria " << endl;
         cout << "(7)  Retirar pelicula de una categoria " << endl;
@@ -246,7 +245,7 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         case 4: {
             cout << "Consultar las categorias " << endl;
             string nombre;
-            cout << "Ingrese el codigo de la categoria a consultar: ";
+            cout << "Ingrese el nombre de la categoria a consultar: ";
             cin >> nombre;
             cout << endl;
             LC->consultarCategoria(nombre);
@@ -260,7 +259,19 @@ void menuMantenimientoCategorias(listaPeliculas*& LP, listaCategorias*& LC) {
         }
         case 6: {
             cout << "Agregar pelicula a una categoria " << endl;
-
+            int id;
+            cout << "Ingrese la identificacion de la pelicula a agregar: " << endl;
+            cin >> id;
+            string nombre;
+            cout << "Ingrese el nombre de la categoria a asociar: " << endl;
+            cin >> nombre;
+            bool agregada = LC->agregarPelicula(id, nombre);
+            if (agregada) {
+                cout << "La pelicula " << id << " ha sido agregada a la categoria" << nombre << endl;
+            }
+            else {
+                cout << "No se ha podido agregar la pelicula a la categoria";
+            }
             break;
         }
         case 7: {

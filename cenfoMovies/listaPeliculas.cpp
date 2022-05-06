@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "listaPeliculas.h"
 #include "listaPorNombre.h"
-#include <list>
+#include "listaAsociacion.h"
 
 listaPorNombre* LPN = new listaPorNombre();
 
@@ -431,3 +431,22 @@ void listaPeliculas::ordenarPorNombre(pelicula*& _puntero)
 {
    
 }
+
+pelicula* listaPeliculas::retornarPelicula(int _id)
+{
+    pelicula* aux = NULL;
+
+    if (cab != NULL) {
+        aux = getCab();
+        bool encontrado = false;
+
+        while (aux != NULL && !encontrado) {
+            if (aux->getId() == _id)
+                encontrado = true;
+            else
+                aux = aux->getSgte();
+        }
+    }
+    return aux;
+}
+

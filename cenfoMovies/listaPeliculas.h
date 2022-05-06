@@ -40,5 +40,6 @@ class listaPeliculas
 
 		bool elegirPelicula(int);
 		void ordenarPorNombre(pelicula*&);
+		pelicula* retornarPelicula(int);
 };
 

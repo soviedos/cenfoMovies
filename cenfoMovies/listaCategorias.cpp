@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include "listaCategorias.h"
+#include "listaAsociacion.h"
+
+listaAsociacion* LA = new listaAsociacion();
 
 listaCategorias::listaCategorias()
 {
@@ -195,23 +198,60 @@ void listaCategorias::catalogoCategorias()
     }
 }
 
-bool listaCategorias::agregarPelicula(int _pelicula)
+bool listaCategorias::agregarPelicula(int _pelicula, string _nombre)
 {
-    return false;
+    bool agregada = false;
+    agregada = LA->agregarPelicula(_pelicula, _nombre);
+    return agregada;
 }
 
-void listaCategorias::retirarPelicula(int _pelicula)
+void listaCategorias::retirarPelicula(int _pelicula, string _nombre)
 {
 }
 
-void listaCategorias::consultarPeliculaCategoria()
+void listaCategorias::consultarPeliculaCategoria(string _nombre)
 {
+    LA->consultarPelCategoria(_nombre);
 }
 
 void listaCategorias::catalogoCategoriasCodigoNombre()
 {
+
 }
 
 void listaCategorias::catalogoCategoriasDetalles()
 {
+}
+
+categoria* listaCategorias::retornarCategoria(string _nombre)
+{
+    categoria* aux = NULL;
+
+    if (cab != NULL) {
+        aux = getCab();
+        bool encontrado = false;
+
+        while (aux != NULL && !encontrado) {
+            if (aux->getNombre() == _nombre)
+                encontrado = true;
+            else
+                aux = aux->getSgte();
+        }
+    }
+    return aux;
+}
+
+void listaCategorias::agregarCantPeliculas(string _nombre)
+{
+    categoria* aux = getCab();
+
+    while (aux != NULL) {
+        if ((_nombre.compare(aux->getNombre()) == 0)) {
+            aux->setCantPeliculasAsoc(aux->getCantPeliculasAsoc() +1);
+            break;
+        }
+        else {
+            aux = aux->getSgte();
+        }
+    }
 }

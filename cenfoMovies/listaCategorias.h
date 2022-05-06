@@ -28,10 +28,15 @@ class listaCategorias
 		bool modificarCategoria(string);
 		void consultarCategoria(string);
 		void catalogoCategorias();
-		bool agregarPelicula(int);
-		void retirarPelicula(int);
-		void consultarPeliculaCategoria();
+		bool agregarPelicula(int, string);
+		void retirarPelicula(int, string);
+		void consultarPeliculaCategoria(string);
 		void catalogoCategoriasCodigoNombre();
 		void catalogoCategoriasDetalles();
+
+		// **********Operaciones miscelaneas**********
+
+		categoria* retornarCategoria(string);
+		void agregarCantPeliculas(string);
 };
 

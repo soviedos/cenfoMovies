@@ -22,6 +22,8 @@ class listaAsociacion
 
 		// **********Operaciones miscelaneas**********
 
-
+		bool agregarPelicula(int, string);
+		void consultarPelCategoria(string);
+		void consultarCatalogCodigoNombre();
 };
 
